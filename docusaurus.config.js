@@ -5,7 +5,7 @@ const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 const constants = require("./constants");
-const { GITHUB_URL, TWITTER_URL } = constants;
+const { GITHUB_URL, TWITTER_URL, GOOGLE_ANALYTICS_ID } = constants;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -16,8 +16,8 @@ const config = {
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/icons/icon.png",
-  organizationName: "facebook", // Usually your GitHub org/user name.
-  projectName: "docusaurus", // Usually your repo name.
+  organizationName: "trypalette",
+  projectName: "palette",
 
   presets: [
     [
@@ -36,6 +36,12 @@ const config = {
         blog: false,
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
+        },
+        gtag: {
+          trackingID: GOOGLE_ANALYTICS_ID,
+        },
+        googleAnalytics: {
+          trackingID: GOOGLE_ANALYTICS_ID,
         },
       }),
     ],

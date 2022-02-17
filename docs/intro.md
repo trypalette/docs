@@ -12,10 +12,10 @@ npm install palette.dev
 ```
 
 ```ts
-import { init, breadcrumbs } from "palette.dev";
+import { init, breadcrumbs, cpu } from "palette.dev";
 
 init({
   key: "<api key>",
-  plugins: [breadcrumbs()],
+  plugins: [breadcrumbs(), cpu()],
 });
 ```

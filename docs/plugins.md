@@ -7,19 +7,14 @@ sidebar_position: 2
 Plugins are the foundation of great Palette's SDK. You need to opt into functionality.
 
 ```ts
-import { init, vitals, errors, breadcrumbs, fps } from "palette.dev";
+import { init, cpu } from "palette.dev";
 
 init({
   key: "<api key>",
   plugins: [
-    // Collect errors
-    errors({
-      warnings: false,
+    cpu({
+      sampleRate: 1_000, // Collect cpu samples every 1000ms
     }),
-    // Collect web core vitals
-    vitals(),
-    // Collect click, navigation, and other events
-    breadcrumbs(),
   ],
 });
 
