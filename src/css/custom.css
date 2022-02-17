@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
 /**
  * Any CSS included here will be global. The classic template
  * bundles Infima by default. Infima is a CSS framework designed to
@@ -6,25 +8,57 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #0070f3;
+  --ifm-color-primary-dark: #444;
+  --ifm-color-primary-darker: #333;
+  --ifm-color-primary-darkest: #111;
+  --ifm-color-primary-light: #666;
+  --ifm-color-primary-lighter: #888;
+  --ifm-color-primary-lightest: #999;
   --ifm-code-font-size: 95%;
+
+  --ifm-h1-font-size: 2rem;
+  --ifm-container-width-xl: 1045px;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
-html[data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
+html[data-theme="dark"] {
+  --ifm-color-primary: #0070f3;
+  --ifm-color-primary-dark: #0070f3;
+  --ifm-color-primary-darker: #004487;
+  --ifm-color-primary-darkest: #00459;
+  --ifm-color-primary-light: #2c4fed;
+  --ifm-color-primary-lighter: #4c66f5;
+  --ifm-color-primary-lightest: #7386fa;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+p {
+  margin: 1em 0;
+  font-size: 1em;
+  line-height: 1.625em;
+}
+
+p,
+small {
+  font-weight: 400;
+  color: inherit;
+  letter-spacing: -0.005625em;
 }
 
 .docusaurus-highlight-code-line {
@@ -34,6 +68,40 @@ html[data-theme='dark'] {
   padding: 0 var(--ifm-pre-padding);
 }
 
-html[data-theme='dark'] .docusaurus-highlight-code-line {
+html[data-theme="dark"] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Overrides */
+.menu__link menu__link--active {
+  background-color: none;
+}
+
+footer.footer {
+  background-color: transparent;
+  border-top: 1px solid var(--ifm-toc-border-color);
+}
+
+[class*="iconExternalLink"] {
+  display: none;
+}
+
+.DocSearch.DocSearch-Button {
+  border-radius: 5px;
+}
+
+.markdown h1:first-child {
+  --ifm-h1-font-size: 2rem;
+}
+
+.markdown h2 {
+  --ifm-h2-font-size: 1.5rem;
+}
+.navbar__logo {
+  height: 1.5rem;
+}
+
+.menu__link.menu__link--active {
+  background-color: transparent;
+  font-weight: bold;
 }
