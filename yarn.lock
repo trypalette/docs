@@ -1381,7 +1381,7 @@
     "@docusaurus/utils-validation" "2.0.0-beta.15"
     "tslib" "^2.3.1"
 
-"@docusaurus/plugin-sitemap@2.0.0-beta.15":
+"@docusaurus/plugin-sitemap@^2.0.0-beta.15", "@docusaurus/plugin-sitemap@2.0.0-beta.15":
   "integrity" "sha512-PBjeQb2Qpe4uPdRefWL/eXCeYjrgNB/UArExYeUuP4wiY1dpw2unGNCvFUxv4hzJGmARoTLsnRkeYkUim809LQ=="
   "resolved" "https://registry.npmjs.org/@docusaurus/plugin-sitemap/-/plugin-sitemap-2.0.0-beta.15.tgz"
   "version" "2.0.0-beta.15"

@@ -5,4 +5,5 @@ const GOOGLE_ANALYTICS_ID = "G-NPFRF2LT9W";
 module.exports = {
   GITHUB_URL,
   TWITTER_URL,
+  GOOGLE_ANALYTICS_ID,
 };

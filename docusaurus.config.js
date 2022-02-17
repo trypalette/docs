@@ -43,6 +43,10 @@ const config = {
         googleAnalytics: {
           trackingID: GOOGLE_ANALYTICS_ID,
         },
+        sitemap: {
+          changefreq: "weekly",
+          priority: 0.5,
+        },
       }),
     ],
   ],
