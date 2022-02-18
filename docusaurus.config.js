@@ -90,10 +90,10 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} Redraw, Inc.`,
       },
       algolia: {
-        appId: "K0BAX3OU2H",
+        appId: "3U3W37N9U9",
         // "Search only api key". Safe to keep this public
-        apiKey: "c5c72605653994e7f6dc544be90a9f5c",
-        indexName: "palette",
+        apiKey: "269c2f3fc46c06adf7f307eb7c69a298",
+        indexName: "docs-palette",
         contextualSearch: true,
       },
       prism: {
