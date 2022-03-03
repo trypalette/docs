@@ -1,22 +1,30 @@
----
-sidebar_position: 2
----
+# Using Plugins
 
-# Plugins
+Palette allows you to import only what you need.
 
-Plugins are the foundation of great Palette's SDK. You need to opt into functionality.
+## Electron Main
 
 ```ts
-import { init, cpu } from "palette.dev";
+import { init, cpu } from "palette.dev/dist/electron/main";
 
 init({
-  key: "<api key>",
-  plugins: [
-    cpu({
-      sampleRate: 1_000, // Collect cpu samples every 1000ms
-    }),
-  ],
+  key: "your-api-key",
+  plugins: [cpu()],
 });
+```
 
-breadcrumbs.disable();
+## Electron Renderer
+
+```ts
+import {
+  init,
+  cpu,
+  breadcrumbs,
+  vitals,
+} from "palette.dev/dist/electron/renderer";
+
+init({
+  key: "your-api-key",
+  plugins: [cpu(), breadcrumbs(), vitals()],
+});
 ```

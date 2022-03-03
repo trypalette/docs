@@ -54,6 +54,8 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      // We don't have much nesting right now so we don't need to collapse
+      autoCollapseSidebarCategories: true,
       colorMode: {
         defaultMode: "light",
         disableSwitch: true,
