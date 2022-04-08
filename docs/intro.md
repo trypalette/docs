@@ -12,7 +12,7 @@ npm install palette.dev
 
 ## Usage
 
-Import `init` and pass your API key and the plugins you want to use. Import palette **before all your other imports** in your app's entrypoint file.
+Import `init` and pass your API key and the plugins you want to use. Import palette **before all other imports** in your app's entrypoint file.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
