@@ -153,15 +153,9 @@ const labelFn = (name, fn) => {
   label.end(name);
 };
 
-labelFn("performance.pageload", () => {
-  win.loadFile("index.html");
-
-  win.on("hide", () => {
-    win.webContents.send("window.visible", false);
-  });
-  win.on("show", () => {
-    win.webContents.send("window.visible", true);
-  });
+// Profiling initial react render
+labelFn("react.render", () => {
+  render(<MyApp />, document.getElementById("root"));
 });
 ```
 
