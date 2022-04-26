@@ -6,7 +6,7 @@ title: CPU
 
 :::caution
 
-**This API is only supported in electron. It isn't supported in the renderer process when `nodeIntegration` is true**
+**This API is only supported in electron. It is only supported in renderer processes with `nodeIntegration` enabled**
 
 :::
 
@@ -14,21 +14,27 @@ title: CPU
 
 The CPU plugin collects CPU samples from electron's renderer and main processes.
 
-```ts {5} title="main.js"
-import { init, cpu } from "palette.dev/dist/electron/main";
+```ts {6} title="main.js (main process)"
+import { init, cpu } from "@palette.dev/electron/main";
 
 init({
   key: "your-api-key",
-  plugins: [cpu()],
+  plugins: [
+    cpu(),
+    // ...
+  ],
 });
 ```
 
-```ts {5} title="renderer.js"
-import { init, cpu, breadcrumbs } from "palette.dev/dist/electron/renderer";
+```ts {6} title="renderer.js (renderer process)"
+import { init, cpu } from "@palette.dev/electron/renderer";
 
 init({
   key: "your-api-key",
-  plugins: [breadcrumbs(), cpu()],
+  plugins: [
+    cpu(),
+    // ...
+  ],
 });
 ```
 
@@ -36,14 +42,14 @@ init({
 
 CPU samples are collected in intervals. The default sample rate is `1000 ms`.
 
-```ts {7} title="main.js"
-import { init, cpu } from "palette.dev/dist/electron/main";
+```ts {7} title="main.js (main process)"
+import { init, cpu } from "@palette.dev/electron/main";
 
 init({
   key: "your-api-key",
   plugins: [
     cpu({
-      samplingRate: 1_000,
+      samplingInterval: 1_000,
     }),
   ],
 });
@@ -53,8 +59,8 @@ A smaller sampling rate provides more accurate reporting while a greater one wil
 
 ### Starting and Stopping Sampling
 
-```ts {4,6} title="main.js"
-import { cpu } from "palette.dev/dist/electron/main";
+```ts {4,6} title="main.js (main process)"
+import { cpu } from "@palette.dev/electron/main";
 
 if (userIsIdle) {
   cpu.stop();
