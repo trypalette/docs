@@ -56,6 +56,14 @@ app.whenReady().then(() => {
 });
 ```
 
+If you have a preload script you need to call `init` from `@palette.dev/electron/preload`
+
+```ts title="preload.js (preload process)"
+import { init } from "@palette.dev/electron/preload";
+
+init();
+```
+
 ```ts title="renderer.js (renderer process)"
 import {
   init,
@@ -87,7 +95,7 @@ init({
 <TabItem value="browser" label="Browser">
 
 ```ts title="index.js"
-import { init } from "palette.dev";
+import { init } from "@palette.dev/browser";
 
 init({
   key: "your-api-key",
