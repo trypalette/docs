@@ -133,7 +133,7 @@ performance.mark("myApp.stateChange", {
 });
 
 // Measuring time durations
-performance.mark("userAction.start"); // marks staring point
+performance.mark("userAction.start"); // marks starting point
 performance.measure("userAction.duration", "userAction.start"); // measures from starting point
 ```
 
