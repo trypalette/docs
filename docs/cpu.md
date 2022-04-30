@@ -6,13 +6,13 @@ title: CPU
 
 :::caution
 
-**This API is only supported in electron. It is only supported in renderer processes with `nodeIntegration` enabled**
+**This API is only supported in Electron. It is only supported in renderer processes with `nodeIntegration` enabled**.
 
 :::
 
 ### Usage
 
-The CPU plugin collects CPU samples from electron's renderer and main processes.
+The CPU plugin collects CPU samples from Electron's renderer and main processes.
 
 ```ts {6} title="main.js (main process)"
 import { init, cpu } from "@palette.dev/electron/main";
