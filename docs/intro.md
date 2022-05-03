@@ -161,7 +161,7 @@ const labelFn = (name, fn) => {
   label.end(name);
 };
 
-// Profiling initial react render
+// Profile initial react render
 labelFn("react.render", () => {
   render(<MyApp />, document.getElementById("root"));
 });

@@ -5,6 +5,7 @@ const sidebars = {
     {
       Plugins: ["events", "cpu", "vitals"],
     },
+    "patterns",
     "tag",
   ],
 };
