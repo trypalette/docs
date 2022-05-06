@@ -15,18 +15,12 @@ import TabItem from '@theme/TabItem';
 ```ts {11}
 import { init, events } from "@palette.dev/electron/main";
 
-app.whenReady().then(() => {
-  const window = new BrowserWindow({
+init({
+  key: "your-api-key",
+  plugins: [
+    events(),
     // ...
-  });
-
-  init({
-    key: "your-api-key",
-    plugins: [
-      events({ window }),
-      // ...
-    ],
-  });
+  ],
 });
 ```
 

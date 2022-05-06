@@ -33,36 +33,35 @@ import TabItem from '@theme/TabItem';
 <Tabs>
 <TabItem value="electron" label="Electron">
 
+#### Main Process
+
 ```ts title="main.js (main process)"
 import { init, cpu, events } from "@palette.dev/electron/main";
-import { app } from "electron";
 
-app.whenReady().then(() => {
-  const window = new BrowserWindow({
-    // ...
-  });
-
-  init({
-    key: "your-api-key",
-    plugins: [
-      // Collect CPU usage
-      cpu(),
-      // BrowserWindow events
-      events({ window }),
-      // performance marks and entries
-      measure(),
-    ],
-  });
+init({
+  key: "your-api-key",
+  plugins: [
+    // Collect CPU usage
+    cpu(),
+    // BrowserWindow events
+    events(),
+    // performance marks and entries
+    measure(),
+  ],
 });
 ```
 
-If you have a preload script you need to call `init` from `@palette.dev/electron/preload`
+#### Preload Script
+
+If you have a preload script you need to call `init` from `@palette.dev/electron/preload`. Skip this if you don't have a preload script.
 
 ```ts title="preload.js (preload process)"
 import { init } from "@palette.dev/electron/preload";
 
 init();
 ```
+
+#### Renderer Process
 
 ```ts title="renderer.js (renderer process)"
 import {
@@ -108,25 +107,14 @@ init({
 ## Tagging
 
 ```ts
-import { setTag } from "@palette.dev/electron/renderer";
+import { tag } from "@palette.dev/electron/renderer";
 
-setTag("userId", "u-123");
-setTag("sessionId", "s-123");
+tag("userId", "u-123");
 ```
 
 ## Custom Metrics
 
 Caputure custom metrics with the built-in [`performance.mark()`](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) and [`performance.measure`](https://developer.mozilla.org/en-US/docs/Web/API/Performance/measure) web APIs. Palette's `measure` plugin records all events recorded by `mark` and `measure`.
-
-:::tip
-
-**In electron's main process, import `performance`**
-
-```ts
-import { performance } from "perf_hooks";
-```
-
-:::
 
 ```ts
 // Mark events at a specific action or event
