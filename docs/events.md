@@ -1,8 +1,8 @@
 # Events
 
-Palette's `event` plugin captures platform events. In the browser this means capturing click events like `keypress` and `click`. In electron, events on `BrowserWindow` like `move`, `show`, and `hide` are captured.
+Palette's `event` plugin captures events triggered by the user. Events are like a trail of breadcrumbs that lead to a janky experience.
 
-Events are useful for knowing what actions a user took that led to a performance regression or an error.
+In the browser this means capturing click events like `keypress` and `click`. In electron's main process, `BrowserWindow` events like `move`, `show`, and `hide` are captured.
 
 ### Usage
 

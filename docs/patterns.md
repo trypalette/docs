@@ -7,8 +7,13 @@ This pattern works well for user interactions like typing, dragging, and clickin
 ```ts
 import { cpu, label } from "@palette.dev/electron/renderer";
 
-const debounceMeasure = (
-  fn: () => void,
+/**
+ * A utility for profiling and label frequent events
+ */
+export const debounceLabel = (
+  fn: () => void | Promise<void>,
+  start: () => void,
+  stop: () => void,
   _opts?: { name?: string; timeout?: number }
 ) => {
   const { name, timeout } = {
@@ -19,19 +24,19 @@ const debounceMeasure = (
 
   let timeoutId: ReturnType<typeof global.setTimeout> | undefined;
 
-  return () => {
+  return async () => {
     if (timeoutId === undefined || timeoutId === null) {
       label.start(name); // Mark the start of the label
-      cpu.start(); // Start cpu profiler
+      start();
     } else {
       clearTimeout(timeoutId);
     }
 
-    fn(); // Invoke the function to be profiled
+    await fn(); // Invoke the function to be profiled
 
     // Debounce marking the end of the label
     timeoutId = setTimeout(() => {
-      cpu.stop();
+      stop();
       label.end(name); // Mark the end of the label
       timeoutId = undefined;
     }, timeout);
@@ -42,13 +47,22 @@ const debounceMeasure = (
 #### Examples of `debounceMeasure`
 
 ```tsx
-const _handleInput = debounceMeasure(handleInput, {
-  name: "input-delay",
-  timeout: 1_000,
-});
+const handleInputAndLabel = debounceLabel(
+  handleInput,
+  () => cpu.start({ samplingInterval: 500 }),
+  () => cpu.stop(),
+  {
+    name: "handle-input",
+    timeout: 1_000,
+  }
+);
 
-const Input = () => (
-  <input placeholder="type something" onChange={_handleInput} />
+const Hello = () => (
+  <textarea
+    placeholder="type something"
+    onChange={handleInputAndLabel}
+    style={{ width: "100%", height: "100%", padding: 10 }}
+  />
 );
 ```
 
@@ -70,13 +84,17 @@ These events tend to be one-off events
 - Animations
 
 ```ts
-import { cpu, label } from "@palette.dev/electron/renderer";
-
-const measureFn = (name: string, fn: () => void) => {
+export const labelFn = async (
+  fn: () => void | Promise<void>,
+  start: () => void,
+  stop: () => void,
+  opts?: { name?: string }
+) => {
+  const { name } = { name: fn.name ?? "anonymous", ...opts };
   label.start(name);
-  cpu.start();
-  fn();
-  cpu.stop();
+  start();
+  await fn();
+  stop();
   label.end(name);
 };
 ```
@@ -84,9 +102,15 @@ const measureFn = (name: string, fn: () => void) => {
 #### Examples of `measureFn`:
 
 ```ts
-measureFn("load-3p-scripts", () => {
-  loadScript("https://cdn.example.com/my-scripts.js");
-});
+// Profile the CPU and create a label named "electron-when-ready"
+labelFn(
+  () => loadScript("https://cdn.example.com/my-scripts.js"), // load a script
+  () => cpu.start({ samplingInterval: 500 }), // start cpu profiling before loading the script
+  cpu.stop, // stop cpu profiling after loading the script
+  {
+    name: "load-script", // the name of the label
+  }
+);
 ```
 
 ## Conditional Sampling
@@ -104,16 +128,4 @@ if (myApp.isStaging) {
     plugins: [cpu()],
   });
 }
-
-const measureFn = (name: string, fn: () => void) => {
-  if (myApp.isStaging) {
-    label.start(name);
-    cpu.start();
-  }
-  fn();
-  if (myApp.isStaging) {
-    cpu.stop();
-    label.end(name);
-  }
-};
 ```

@@ -135,7 +135,7 @@ performance.measure("userAction.duration", "userAction.start"); // measures from
 
 ## Labeling
 
-A label is a special kind of [measurement](https://developer.mozilla.org/en-US/docs/Web/API/Performance/measure) that demarcates a critical interaction in Palette's session view.
+A label marks a critical interaction in Palette's timeline.
 
 ```ts
 import { label } from "@palette.dev/electron/renderer";
