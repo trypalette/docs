@@ -156,3 +156,24 @@ labelFn("react.render", () => {
 ```
 
 Labeling is supported in `electron/main`, `electron/renderer`, and `browser` clients.
+
+## Uploading Source Maps
+
+`@palette.dev/webpack-plugin` is a webpack plugin that uploads source maps to Palette. Only webpack is supported at the moment.
+
+### Installation
+
+```bash
+npm install @palette.dev/webpack-plugin --save-dev
+```
+
+### Usage
+
+```ts title="webpack.config.js"
+import PalettePlugin from "@palette.dev/webpack-plugin";
+
+export default {
+  // ...
+  plugins: [new PalettePlugin({ key: "YOUR_API_KEY" })],
+};
+```
