@@ -19,6 +19,8 @@
 
   --ifm-h1-font-size: 2rem;
   --ifm-container-width-xl: 1045px;
+
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
